@@ -16,7 +16,7 @@ pinned: false
 
 Practice implementing operators and architectures from scratch — the exact skills top ML teams test for.
 
-*Like LeetCode, but for tensors. Self-hosted. Jupyter-based. Instant feedback.*
+*An interactive coding platform, but for tensors. Self-hosted. Jupyter-based. Instant feedback.*
 
 [![PyTorch](https://img.shields.io/badge/PyTorch-ee4c2c?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org)
 [![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)](https://jupyter.org)
@@ -27,7 +27,7 @@ Practice implementing operators and architectures from scratch — the exact ski
 [![GitHub stars](https://img.shields.io/github/stars/duoan/TorchCode?style=social)](https://github.com/duoan/TorchCode)
 [![GitHub Container Registry](https://img.shields.io/badge/ghcr.io-TorchCode-blue?style=flat-square&logo=github)](https://ghcr.io/duoan/torchcode)
 [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Spaces-TorchCode-blue?style=flat-square)](https://huggingface.co/spaces/duoan/TorchCode)
-![Problems](https://img.shields.io/badge/problems-40-orange?style=flat-square)
+![Problems](https://img.shields.io/badge/problems-41-orange?style=flat-square)
 ![GPU](https://img.shields.io/badge/GPU-not%20required-brightgreen?style=flat-square)
 
 [![Star History Chart](https://api.star-history.com/svg?repos=duoan/TorchCode&type=Date)](https://star-history.com/#duoan/TorchCode&Date)
@@ -44,7 +44,7 @@ TorchCode gives you a **structured practice environment** with:
 
 | | Feature | |
 |---|---|---|
-| 🧩 | **40 curated problems** | The most frequently asked PyTorch interview topics |
+| 🧩 | **41 curated problems** | The most frequently asked PyTorch interview topics |
 | ⚖️ | **Automated judge** | Correctness checks, gradient verification, and timing |
 | 🎨 | **Instant feedback** | Colored pass/fail per test case, just like competitive programming |
 | 💡 | **Hints when stuck** | Nudges without full spoilers |
@@ -99,6 +99,25 @@ make run
 `make run` will try the prebuilt image first and automatically fall back to a local build when needed.
 
 Open **<http://localhost:8888>** — that's it. Works with both Docker and Podman (auto-detected).
+
+### Option 3 — Standalone Web UI (Next.js + FastAPI)
+
+For a modern, standalone coding experience with an integrated IDE and dual-pane layout:
+
+1. **Start Backend (FastAPI):**
+   ```bash
+   pip install -r api/requirements.txt
+   python -m uvicorn api.main:app --port 8000 --reload
+   ```
+2. **Start Frontend (Next.js):**
+   ```bash
+   cd web
+   npm install
+   npm run dev
+   ```
+3. Open **<http://localhost:3000>** in your browser.
+
+![TorchCode UI Preview](assets/ui_preview.png)
 
 ---
 
@@ -179,6 +198,7 @@ If you're interviewing for any role touching LLMs or Transformers, expect at lea
 | 37 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/37_dpo_loss.ipynb" target="_blank">DPO Loss</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/37_dpo_loss.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `dpo_loss(chosen, rejected, ...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Direct preference optimization, alignment training |
 | 38 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/38_grpo_loss.ipynb" target="_blank">GRPO Loss</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/38_grpo_loss.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `grpo_loss(logps, rewards, group_ids, eps)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | Group relative policy optimization, RLAIF, within-group normalized advantages |
 | 39 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/39_ppo_loss.ipynb" target="_blank">PPO Loss</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/39_ppo_loss.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `ppo_loss(new_logps, old_logps, advantages, clip_ratio)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | PPO clipped surrogate loss, policy gradient, trust region |
+| 41 | <a href="https://github.com/duoan/TorchCode/blob/master/templates/41_opd_loss.ipynb" target="_blank">OPD Loss</a> <a href="https://colab.research.google.com/github/duoan/TorchCode/blob/master/templates/41_opd_loss.ipynb" target="_blank"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab" height="20"></a> | `opd_loss(student_logits, teacher_logits, ...)` | ![Hard](https://img.shields.io/badge/Hard-F44336?style=flat-square) | 💡 | On-policy distillation, reverse KL, multi-teacher alignment |
 
 ---
 
@@ -225,7 +245,7 @@ status()                    # Progress dashboard — solved / attempted / todo
 | **1** | 🧱 Foundations | ReLU → Softmax → CE Loss → Dropout → Embedding → GELU → Linear → LayerNorm → BatchNorm → RMSNorm → SwiGLU MLP → Conv2d | 2–3 hrs |
 | **2** | 🧠 Attention Deep Dive | SDPA → MHA → Cross-Attn → Causal → GQA → KV Cache → Sliding Window → RoPE → Linear Attn → Flash Attn | 3–4 hrs |
 | **3** | 🏗️ Architecture + Training | GPT-2 Block → LoRA → MoE → ViT Patch → Adam → Cosine LR → Grad Clip → Grad Accumulation → Kaiming Init | 3–4 hrs |
-| **4** | 🎯 Inference + Advanced | Top-k/p Sampling → Beam Search → Speculative Decoding → BPE → INT8 Quant → DPO Loss → GRPO Loss → PPO Loss + speed run | 3–4 hrs |
+| **4** | 🎯 Inference + Advanced | Top-k/p Sampling → Beam Search → Speculative Decoding → BPE → INT8 Quant → DPO Loss → GRPO Loss → PPO Loss → OPD Loss + speed run | 3–4 hrs |
 
 ---
 
@@ -367,10 +387,54 @@ Thanks to everyone who has contributed to TorchCode.
                 </a>
             </td>
             <td align="center">
+                <a href="https://github.com/abhijitmjj">
+                    <img src="https://avatars.githubusercontent.com/u/22732909?v=4" width="100;" alt="abhijitmjj"/>
+                    <br />
+                    <sub><b>abhijitmjj</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/laitifranz">
+                    <img src="https://avatars.githubusercontent.com/u/25352428?v=4" width="100;" alt="laitifranz"/>
+                    <br />
+                    <sub><b>laitifranz</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/hrlics">
+                    <img src="https://avatars.githubusercontent.com/u/90754112?v=4" width="100;" alt="hrlics"/>
+                    <br />
+                    <sub><b>hrlics</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/HareshKarnan">
+                    <img src="https://avatars.githubusercontent.com/u/5285984?v=4" width="100;" alt="HareshKarnan"/>
+                    <br />
+                    <sub><b>HareshKarnan</b></sub>
+                </a>
+            </td>
+		</tr>
+		<tr>
+            <td align="center">
                 <a href="https://github.com/ThierryHJ">
                     <img src="https://avatars.githubusercontent.com/u/51846529?v=4" width="100;" alt="ThierryHJ"/>
                     <br />
                     <sub><b>ThierryHJ</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/Zuozhuo">
+                    <img src="https://avatars.githubusercontent.com/u/116483151?v=4" width="100;" alt="Zuozhuo"/>
+                    <br />
+                    <sub><b>Zuozhuo</b></sub>
+                </a>
+            </td>
+            <td align="center">
+                <a href="https://github.com/reidemeister94">
+                    <img src="https://avatars.githubusercontent.com/u/28828348?v=4" width="100;" alt="reidemeister94"/>
+                    <br />
+                    <sub><b>reidemeister94</b></sub>
                 </a>
             </td>
 		</tr>
